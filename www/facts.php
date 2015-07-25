@@ -30,10 +30,9 @@
       }
 
       if(isset($_GET['exit'])){
-      unset($_SESSION['login']);
-      unset($_SESSION['password']);
-      unset($_SESSION['open']);
-      echo "<script>document.location.replace('facts.php?views=main');</script>";
+
+      $acount->exit_acount($_SESSION['login'], $_SESSION['password'], $_SESSION['open']);
+      
       } 
 
       if(isset($_POST['open'])){
@@ -43,7 +42,7 @@
       $acount = new Acount($_SESSION['login'], $_SESSION['password']);
   
       $open_sesion = $acount->open_acount();
-      
+
   if($open_sesion){
     $_SESSION['open'] = 1;
   }
