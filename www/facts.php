@@ -32,7 +32,7 @@
       if(isset($_GET['exit'])){
 
       $acount->exit_acount($_SESSION['login'], $_SESSION['password'], $_SESSION['open']);
-      
+
       } 
 
       if(isset($_POST['open'])){
@@ -163,38 +163,10 @@
                       $email = security($_POST['email']);
                       $password2 = $_POST['password2'];
 
-                      if($password != $password2){
-                        ?>
-                        <script>
-                        alert('Помилка реєстрації: Паролі не співпадають, повторіть спробу');
-                        </script>
-                        <?php
-                      }
-                      else{
+                      $users = new User($login, $password, $password2, $email);
+                      $enter = $users->add_user();
 
-                      $pdo = db_conect();
-
-                      if(get_facts_filtr_login($login)){
-                          ?>
-                        <script>
-                        alert('Помилка реєстрації: Дани логін вже існує в базі даних, змініть логін');
-                        </script>
-                        <?php
-                      }else{
-
-                      if(get_facts_filtr_email($email)){
-                          ?>
-                        <script>
-                        alert('Помилка реєстрації: Дани E-mail вже існує в базі даних, змініть E-mail');
-                        </script>
-                        <?php
-                      }else{
-
-                      $stmt = $pdo->prepare("INSERT INTO  users(login, password, Email) VALUES (?, ?, ?)");
-
-                      $stmt->execute(array($login, $password, $email));
-
-                      if($stmt){
+                      if($enter){
                         ?>
                         <script>
                         alert('Дякуєм ви успішно зареєструвались');
