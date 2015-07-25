@@ -39,20 +39,11 @@
       if(isset($_POST['open'])){
       $_SESSION['login'] = security($_POST['login']);
       $_SESSION['password'] = security($_POST['password']);
-      $date = get_date();
-  foreach ($date as  $item) {
-    $login= $item['login'];
-    $password = $item['password'];
+      
+      $acount = new Acount($_SESSION['login'], $_SESSION['password']);
   
-  if($_SESSION['login'] == $login && $_SESSION['password'] == $password){
-      $open_sesion = true;
-    break;
-  }
-  else{
-    $open_sesion = false;
-  }
-}
-
+      $open_sesion = $acount->open_acount();
+      
   if($open_sesion){
     $_SESSION['open'] = 1;
   }
