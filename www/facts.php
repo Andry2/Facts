@@ -21,6 +21,7 @@
   <body>
     <?php
     include "factsbd.php";
+    include "class_facts.php";
      $content = array('main', 'categor', 'item_fact', 'info');
       if(!isset($_SESSION['user'])){
       $_SESSION['user'] = 1;
@@ -167,7 +168,6 @@
 </div>
                   <?php
                     if(isset($_POST['res'])){
-                      
                       $login = security($_POST['login']);
                       $password = security($_POST['password']);
                       $email = security($_POST['email']);
