@@ -52,35 +52,16 @@
 
         $img = $_FILES['img']['name'];
         
-        $pdo = db_conect();
+        $news = new News($name, $text, $user, $img, $date);
 
-        $stmt = $pdo->prepare("INSERT INTO  information(name, img, text, about, date) VALUES (?, ?, ?, ?, ?)");
-
-        $stmt->execute(array($name, $img, $text, $user, $date));
-
-        $pdo = db_conect();
-
-        $stmt = $pdo->query('SELECT * FROM users');
-
-        foreach ($stmt as $key) {
-        $resalt = mail($key['Email'],"Facts","На сайті зявилась нова статя зайдіть на сайт для її перегляду\n");
-        }
-        if($stmt){
+        $res_add = $news->add_news();
+        
         ?>
         <br>
         <br>
         <br>
         <br>
-        <div  class="alert alert-success" role="alert"><b>Ок!</b> Статтю успішно додано.</div>
-        <?  
-        }
-        else{
-        ?>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div  class="alert alert-danger" role="alert"><b>Помилка!</b> Сталася помилка під час додавання статті повторіть будь-ласка!.</div>
+        <div  class="alert alert-success" role="alert"><?php echo $res_add; ?></div>
         <?
         }
         }
