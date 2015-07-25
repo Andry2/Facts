@@ -25,11 +25,9 @@
       $time = date('H:i:s');
       $user = $_SESSION['login'];
 
-        $pdo = db_conect();
-
-        $stmt = $pdo->prepare("INSERT INTO  commentary(id_st, commentary, about, date, time) VALUES (?, ?, ?, ?, ?)");
-
-        $stmt->execute(array($id, $commentary, $user, $date, $time));
+        $commen = new Comment($id, $commentary, $user, $date, $time);
+        
+        $commen->add_comment();
 
         echo "<script>document.location.replace('facts.php?views=item_fact&id=$id');</script>";
 
@@ -69,7 +67,7 @@
         <div class="form-group">
           <form method="POST">
             <textarea class="form-control" name="t_commentary" id="message-text"></textarea>          
-            <button type="submit" name="commentary" class="btn btn-default" style="position:relavite; float:right; margin-top:8px; margin:8px;" data-toggle="modal" data-target="#exampleModal">Додати коментар</button>
+            <button type="submit"  name="commentary" class="btn btn-default" style="position:relavite; float:right; margin-top:8px; margin:8px;" data-toggle="modal" data-target="#exampleModal">Додати коментар</button>
             </form>
           <br>
           <?php
