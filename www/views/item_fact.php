@@ -20,7 +20,7 @@
   <body>
     <?
     if(isset($_POST['commentary'])){
-      $commentary = security($_POST['t_commentary']);
+      $commentary = $_POST['t_commentary'];
       $date = date('d-m-Y');
       $time = date('H:i:s');
       $user = $_SESSION['login'];

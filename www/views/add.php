@@ -42,8 +42,8 @@
       </form>
     <?php
       if(isset($_POST['ger'])){
-         $name = security($_POST['name']);
-        $text = security($_POST['text']);
+         $name = $_POST['name'];
+        $text = $_POST['text'];
         $date = date('d-m-Y');
         $user = $_SESSION['login'];
 
@@ -55,7 +55,7 @@
         $news = new News($name, $text, $user, $img, $date);
 
         $res_add = $news->add_news();
-        
+
         ?>
         <br>
         <br>
@@ -63,7 +63,6 @@
         <br>
         <div  class="alert alert-success" role="alert"><?php echo $res_add; ?></div>
         <?
-        }
         }
     ?>
     </div>

@@ -31,13 +31,16 @@
 
       if(isset($_GET['exit'])){
 
-      $acount->exit_acount($_SESSION['login'], $_SESSION['password'], $_SESSION['open']);
+      unset($_SESSION['login']);
+      unset($_SESSION['password']);
+      unset($_SESSION['open']);
 
+      echo "<script>document.location.replace('facts.php?views=categor');</script>";
       } 
 
       if(isset($_POST['open'])){
-      $_SESSION['login'] = security($_POST['login']);
-      $_SESSION['password'] = security($_POST['password']);
+      $_SESSION['login'] = $_POST['login'];
+      $_SESSION['password'] = $_POST['password'];
       
       $acount = new Acount($_SESSION['login'], $_SESSION['password']);
   
@@ -158,9 +161,9 @@
 </div>
                   <?php
                     if(isset($_POST['res'])){
-                      $login = security($_POST['login']);
-                      $password = security($_POST['password']);
-                      $email = security($_POST['email']);
+                      $login = $_POST['login'];
+                      $password = $_POST['password'];
+                      $email = $_POST['email'];
                       $password2 = $_POST['password2'];
 
                       $users = new User($login, $password, $password2, $email);
@@ -180,11 +183,11 @@
                         <?php
 
                       }
-                    }
+                    
                     }
 
-                    }
-                    }
+                    
+                    
                 }
                 else{
                   ?>

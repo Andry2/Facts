@@ -28,7 +28,7 @@
         <div class="page-header">
           <h2><?php echo $item['name'] ; ?></h2>
         </div>
-        <p style="float:right;"><span class="glyphicon glyphicon-comment" aria-hidden="true"><?php $count_com = get_comment($item['id']); echo $count_com[0];?></span></p>
+        
         <p><a href="facts.php?views=item_fact&id=<?=$item['id'] ?>" class="btn btn-primary" role="button">Читати далі</a> 
         </p>
       </div>

@@ -229,13 +229,5 @@ class Comment{
 		}
 		return $open_sesion;
 	}
-
-	public function exit_acount($login, $password, $open_sesion){
-
-	  unset($login);
-      unset($password);
-      unset($open_sesion);
-
-	}
  }
  ?>
