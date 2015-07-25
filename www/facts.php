@@ -205,6 +205,9 @@
   if($_SESSION['open']){
     array_push($content, 'add');
   }
+
+   $news = new get_write_news();
+
 $views = empty($_GET['views']) ? 'main' : $_GET['views'];
   for ($i=0; $i <5 ; $i++) { 
     if($content[$i] == $views){
@@ -220,12 +223,13 @@ $views = empty($_GET['views']) ? 'main' : $_GET['views'];
 
   switch ($views) {
         case 'categor':
-            $produc = get_facts();
+            $produc = $news->get_bd_all_news();
               break;
         case 'item_fact':
             $id = $_GET['id'];
-            $fact = get_fact_item($id);
-            $comment = get_fact_comment($id);
+            $comment = new get_write_comment();
+            $fact = $news->get_bd($id);
+            $comment = $comment->get_bd($id);
               break;
             }
 include($_SERVER['DOCUMENT_ROOT']."/views/".$views.".php");
